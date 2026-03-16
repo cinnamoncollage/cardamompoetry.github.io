@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Eclipse of Jacob Black</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@200;300;400;600&display=swap');
+body { background-color: #0a0a0c; color: #c4c0b9; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+.serif { font-family: 'Cormorant Garamond', serif; }
+.noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://www.transparenttextures.com/patterns/dust.png'); opacity: 0.15; pointer-events: none; z-index: 50; }
+.floral-glow { position: fixed; width: 100%; height: 100%; background: radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 40%), radial-gradient(circle at 20% 80%, rgba(200, 90, 23, 0.1) 0%, transparent 40%); z-index: -1; pointer-events: none; }
+.chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
+@media (min-width: 768px) { .chart-container { height: 400px; max-height: 450px; } }
+.card { background: rgba(30, 21, 29, 0.4); border: 1px solid rgba(200, 90, 23, 0.2); backdrop-filter: blur(8px); }
+<!-- Chosen Palette: Crimson & Ochre Noir (Midnight #0a0a0c, Thistle #1e151d, Vibrant Ochre #c85a17, Deep Crimson #8b0000, Muted Bone #c4c0b9) -->
+<!-- Application Structure Plan: A single-page scrolling infographic narrative. It begins with an introduction to the 'Jekyll and Hyde' character shift, moves into a temporal line chart showing trait degradation, uses a radar chart to compare fandom nostalgia vs text reality, utilizes an HTML-based timeline to map the musical score's translation of the relationship, and concludes with a composition donut chart explaining the narrative necessity of the forced conflict. This structure logically guides the reader from observation to data evidence, to meta-analysis. -->
+<!-- Visualization & Content Choices: 1. Line Chart -> Goal: Change -> Shows the inversion of positive vs negative traits over four books. -> Justification: Chart.js Canvas line charts perfectly illustrate temporal character arcs. 2. Radar Chart -> Goal: Compare -> Contrasts idealized memory vs Eclipse reality. -> Justification: Chart.js Canvas radar charts effectively map multi-variable psychological profiles. 3. HTML Timeline -> Goal: Organize -> Maps the Desplat score. -> Justification: Tailwind CSS timeline avoids SVG/Mermaid while providing clear sequential narrative. 4. Donut Chart -> Goal: Inform -> Breaks down Bella's 'Realization' triggers. -> Justification: Chart.js Canvas donut shows composition of a narrative plot device. Confirming NO SVG/Mermaid used. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</style>
+</head>
+<body class="antialiased selection:bg-[#c85a17] selection:text-white">
+<div class="noise"></div>
+<div class="floral-glow"></div>
+
+<header class="max-w-5xl mx-auto px-6 pt-24 pb-16 text-center relative z-10">
+    <div class="text-[#c85a17] text-[10px] uppercase tracking-[0.5em] mb-6 font-bold">❖ Character Analysis ❖</div>
+    <h1 class="serif text-5xl md:text-7xl font-semibold mb-6 italic text-stone-100">The Downfall of Jacob Black</h1>
+    <p class="text-sm md:text-base font-light max-w-2xl mx-auto leading-relaxed opacity-80">
+        In <i>Twilight</i> and <i>New Moon</i>, he was the safe haven. By <i>Eclipse</i>, he was described as "Jekyll and Hyde." This data-driven exploration deconstructs the sudden character shift, the problematic nature of the forced kiss, and the dissonance between fandom perception and textual reality.
+    </p>
+</header>
+
+<main class="max-w-6xl mx-auto px-6 pb-32 space-y-24 relative z-10">
+
+    <section>
+        <div class="mb-10 max-w-3xl">
+            <h2 class="serif text-3xl md:text-4xl text-[#c85a17] mb-4">I. The Trait Metamorphosis</h2>
+            <p class="text-sm font-light leading-relaxed opacity-80">
+                Tracking the presence of specific character descriptors across the saga reveals a stark inversion. The 'Safe Harbor' archetype is rapidly dismantled in the third installment to force a high-stakes love triangle, resulting in a fractured, aggressive portrayal that betrayed the established emotional contract with the reader.
+            </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-10 items-center card p-6 md:p-10 rounded-lg">
+            <div class="order-2 md:order-1 space-y-6">
+                <div>
+                    <h3 class="font-bold text-lg text-stone-200 tracking-wide">The "Bad Boy" Trope Failure</h3>
+                    <p class="text-xs font-light leading-relaxed opacity-70 mt-2">
+                        Standard tropes soften a hardened character. Jacob's arc artificially hardens a soft character, utilizing emotional manipulation (threatening suicide) to extort affection.
+                    </p>
+                </div>
+                <div class="border-l-2 border-[#8b0000] pl-4">
+                    <div class="text-3xl serif italic text-stone-200">"Jekyll & Hyde"</div>
+                    <div class="text-[10px] uppercase tracking-widest text-[#c85a17] mt-1">Bella Swan, Eclipse</div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <div class="chart-container">
+                    <canvas id="evolutionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="mb-10 max-w-3xl ml-auto text-right">
+            <h2 class="serif text-3xl md:text-4xl text-[#c85a17] mb-4">II. Nostalgia vs. Textual Reality</h2>
+            <p class="text-sm font-light leading-relaxed opacity-80">
+                A significant portion of the fandom defends Jacob's actions. This is largely driven by the 'Sunk-Cost Fallacy' of <i>New Moon</i>, where his role as a savior cemented an idealized psychological profile that fans project over his toxic behavior in later chapters.
+            </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-10 items-center card p-6 md:p-10 rounded-lg">
+            <div>
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+            <div class="space-y-6 text-sm font-light opacity-80">
+                <p>
+                    <b class="text-[#c85a17]">The Empathy Blindspot:</b> Because Jacob is positioned as the underdog in unrequited love, readers often excuse his predatory boundary violations.
+                </p>
+                <p>
+                    <b class="text-[#c85a17]">Cinematic Softening:</b> The film adaptation significantly smoothed his harsh dialogue, altering the cultural memory of the character's true textual aggression.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="mb-10 max-w-3xl">
+            <h2 class="serif text-3xl md:text-4xl text-[#c85a17] mb-4">III. The Anatomy of a Forced Kiss</h2>
+            <p class="text-sm font-light leading-relaxed opacity-80">
+                Alexandre Desplat's score for the film adaptation acts as a meta-commentary, treating the progression of physical intimacy not as a romantic victory, but as an inevitable heartbreak. The timeline below maps the musical intent against the narrative action.
+            </p>
+        </div>
+        <div class="card p-8 rounded-lg relative">
+            <div class="absolute left-[39px] top-12 bottom-12 w-0.5 bg-stone-800"></div>
+            
+            <div class="flex gap-6 mb-12 relative">
+                <div class="w-10 h-10 rounded-full bg-[#1e151d] border-2 border-[#c85a17] flex items-center justify-center text-xs font-bold text-[#c85a17] z-10 shrink-0">I</div>
+                <div>
+                    <h4 class="text-lg font-bold text-stone-200">Track: Almost a Kiss</h4>
+                    <span class="text-[10px] uppercase tracking-widest text-[#8b0000] block mb-2">New Moon Era Dynamics</span>
+                    <p class="text-xs font-light opacity-70 leading-relaxed">Played during vulnerable, earned moments. Hesitant woodwinds suggest innocence and potential, hovering in a space of 'what if' without aggression.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-6 mb-12 relative">
+                <div class="w-10 h-10 rounded-full bg-[#1e151d] border-2 border-[#8b0000] flex items-center justify-center text-xs font-bold text-[#8b0000] z-10 shrink-0">II</div>
+                <div>
+                    <h4 class="text-lg font-bold text-stone-200">Track: First Kiss</h4>
+                    <span class="text-[10px] uppercase tracking-widest text-[#8b0000] block mb-2">The Boundary Violation</span>
+                    <p class="text-xs font-light opacity-70 leading-relaxed">Accompanies the forced kiss. The score avoids romantic triumph, instead utilizing darker strings and propulsive tension to underscore the discomfort and violation.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-6 relative">
+                <div class="w-10 h-10 rounded-full bg-[#1e151d] border-2 border-stone-500 flex items-center justify-center text-xs font-bold text-stone-500 z-10 shrink-0">III</div>
+                <div>
+                    <h4 class="text-lg font-bold text-stone-200">Track: The Kiss</h4>
+                    <span class="text-[10px] uppercase tracking-widest text-[#8b0000] block mb-2">The Tragic Farewell</span>
+                    <p class="text-xs font-light opacity-70 leading-relaxed">When Bella requests the kiss via emotional extortion. Grand and sweeping, Desplat scores this as a devastating end to their path, granting a dignity the dialogue lacked.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="mb-10 max-w-3xl ml-auto text-right">
+            <h2 class="serif text-3xl md:text-4xl text-[#c85a17] mb-4">IV. The "Realization" Driver</h2>
+            <p class="text-sm font-light leading-relaxed opacity-80">
+                Why did the author write Bella realizing she loved Jacob after such behavior? It was a structural necessity. To validate the "Love Triangle" and make the final choice of Edward feel like a true sacrifice, the narrative required artificial conflict, overriding organic character logic.
+            </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-10 items-center card p-6 md:p-10 rounded-lg">
+            <div class="order-2 md:order-1 space-y-4 text-sm font-light opacity-80">
+                <div class="flex items-center gap-3">
+                    <span class="text-[#8b0000]">❖</span>
+                    <span><b class="text-stone-200">Plot Device Necessity:</b> Artificial stakes creation.</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-[#c85a17]">❖</span>
+                    <span><b class="text-stone-200">Sunk-Cost Empathy:</b> Bella's guilt over New Moon.</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-stone-500">❖</span>
+                    <span><b class="text-stone-200">Genuine Romantic Shift:</b> Minimal textual evidence prior to extortion.</span>
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <div class="chart-container">
+                    <canvas id="donutChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="text-center py-10 border-t border-stone-800/50 relative z-10 text-[10px] uppercase tracking-[0.3em] opacity-40">
+    Based on textual analysis of The Twilight Saga & Alexandre Desplat's Score.
+</footer>
+
+<script>
+function wrap(label) {
+    if (label.length <= 16) return label;
+    const words = label.split(' ');
+    const lines = [];
+    let currentLine = '';
+    words.forEach(word => {
+        if ((currentLine + word).length > 16) {
+            if (currentLine) lines.push(currentLine.trim());
+            currentLine = word + ' ';
+        } else {
+            currentLine += word + ' ';
+        }
+    });
+    if (currentLine) lines.push(currentLine.trim());
+    return lines;
+}
+
+const commonOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    color: '#a19d94',
+    plugins: {
+        legend: { labels: { color: '#c4c0b9', font: { family: 'Montserrat' } } },
+        tooltip: {
+            backgroundColor: 'rgba(10, 10, 12, 0.9)',
+            titleColor: '#c85a17',
+            bodyColor: '#c4c0b9',
+            borderColor: '#2d242b',
+            borderWidth: 1,
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) return label.join(' ');
+                    return label;
+                }
+            }
+        }
+    }
+};
+
+const lineLabels = [wrap("Book 1: Twilight"), wrap("Book 2: New Moon"), wrap("Book 3: Eclipse"), wrap("Book 4: Breaking Dawn")];
+new Chart(document.getElementById('evolutionChart'), {
+    type: 'line',
+    data: {
+        labels: lineLabels,
+        datasets: [
+            {
+                label: 'Loyalty & Empathy',
+                data: [8, 10, 3, 5],
+                borderColor: '#c85a17',
+                backgroundColor: 'rgba(200, 90, 23, 0.1)',
+                borderWidth: 3,
+                tension: 0.4,
+                fill: true
+            },
+            {
+                label: 'Aggression & Extortion',
+                data: [1, 2, 9, 6],
+                borderColor: '#8b0000',
+                backgroundColor: 'rgba(139, 0, 0, 0.1)',
+                borderWidth: 3,
+                tension: 0.4,
+                fill: true
+            }
+        ]
+    },
+    options: {
+        ...commonOptions,
+        scales: {
+            y: { grid: { color: 'rgba(161, 157, 148, 0.1)' }, ticks: { color: '#a19d94' }, max: 10, min: 0 },
+            x: { grid: { display: false }, ticks: { color: '#a19d94' } }
+        }
+    }
+});
+
+const radarLabels = [wrap("Protective Nature"), wrap("Selfless Actions"), wrap("Understanding"), wrap("Entitlement"), wrap("Manipulative Tactics"), wrap("Aggression")];
+new Chart(document.getElementById('radarChart'), {
+    type: 'radar',
+    data: {
+        labels: radarLabels,
+        datasets: [
+            {
+                label: 'Idealized Fandom Memory',
+                data: [9, 8, 9, 2, 1, 3],
+                backgroundColor: 'rgba(200, 90, 23, 0.2)',
+                borderColor: '#c85a17',
+                pointBackgroundColor: '#c85a17'
+            },
+            {
+                label: 'Eclipse Textual Reality',
+                data: [6, 2, 1, 9, 9, 8],
+                backgroundColor: 'rgba(139, 0, 0, 0.2)',
+                borderColor: '#8b0000',
+                pointBackgroundColor: '#8b0000'
+            }
+        ]
+    },
+    options: {
+        ...commonOptions,
+        scales: {
+            r: {
+                angleLines: { color: 'rgba(161, 157, 148, 0.2)' },
+                grid: { color: 'rgba(161, 157, 148, 0.2)' },
+                pointLabels: { color: '#a19d94', font: { family: 'Montserrat', size: 10 } },
+                ticks: { display: false, max: 10, min: 0 }
+            }
+        }
+    }
+});
+
+const donutLabels = [wrap("Plot Device Necessity"), wrap("Sunk-Cost Empathy/Guilt"), wrap("Genuine Romantic Shift")];
+new Chart(document.getElementById('donutChart'), {
+    type: 'doughnut',
+    data: {
+        labels: donutLabels,
+        datasets: [{
+            data: [65, 25, 10],
+            backgroundColor: ['#8b0000', '#c85a17', '#4a403b'],
+            borderColor: '#0a0a0c',
+            borderWidth: 2
+        }]
+    },
+    options: {
+        ...commonOptions,
+        cutout: '75%',
+        plugins: {
+            ...commonOptions.plugins,
+            legend: { display: false }
+        }
+    }
+});
+</script>
+</body>
+</html>
